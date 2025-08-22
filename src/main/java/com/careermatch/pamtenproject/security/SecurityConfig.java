@@ -14,17 +14,11 @@ public class SecurityConfig {
     http
       .csrf(csrf -> csrf.disable())
       .authorizeHttpRequests(auth -> auth
-        .requestMatchers(
-          "/actuator/**",
-          "/public/**",
-          "/health",
-          "/",
-          "/error"
-        ).permitAll()
+        .requestMatchers("/actuator/**", "/public/**", "/health", "/", "/error").permitAll()
         .anyRequest().authenticated()
       )
-      .httpBasic(Customizer.withDefaults()); // or .formLogin(Customizer.withDefaults())
+      .httpBasic(Customizer.withDefaults());  // or .formLogin(Customizer.withDefaults())
 
-    return http.build(); // <-- semicolon here
+    return http.build();
   }
 }
